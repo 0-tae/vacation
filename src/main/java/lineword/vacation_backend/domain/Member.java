@@ -1,35 +1,55 @@
 package lineword.vacation_backend.domain;
-
 import jakarta.persistence.*;
-
+import lombok.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Member")
-public class User {
+@Table(name = "Member",
+        indexes = {
+                @Index(name = "idx_email", columnList = "email"),
+                @Index(name = "idx_user_type", columnList = "userType"),
+                @Index(name = "idx_recent_datetime", columnList = "recentDatetime")
+        }
+)
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@ToString
+public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(nullable = false, length = 16)
+    @Column(name = "name", nullable = false, length = 16)
     private String name;
 
-    @Column(nullable = false, length = 32)
+    @Column(name = "email", nullable = false, length = 32)
     private String email;
 
-    @Column(nullable = false, length = 32)
+    @Column(name = "password", length = 32)
     private String password;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDate createdAt;
+    @Column(name = "created_at", nullable = false, updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
     private LocalDate deletedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @Column(name = "role_id", nullable = false)
+    private Integer roleId;
 
-    // Getters and Setters
+    @Column(name = "alias", length = 50)
+    private String alias;
+
+    @Column(name = "user_type", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean userType;
+
+    @Column(name = "recent_datetime")
+    private LocalDateTime recentDatetime;
+
+    @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private LocalDateTime updatedAt;
 }
