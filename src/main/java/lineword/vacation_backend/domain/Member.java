@@ -36,10 +36,7 @@ public class Member {
     private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDate deletedAt;
-
-    @Column(name = "role_id", nullable = false)
-    private Integer roleId;
+    private LocalDateTime deletedAt;
 
     @Column(name = "alias", length = 50)
     private String alias;
@@ -47,9 +44,20 @@ public class Member {
     @Column(name = "user_type", nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
     private Boolean userType;
 
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id")
+    private Role role;
+
     @Column(name = "recent_datetime")
     private LocalDateTime recentDatetime;
 
     @Column(name = "updated_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
+
+    public String getRoleName(){
+        return this.role.getName();
+    }
+
+    public boolean isAdmin(){return getRoleName() == "ADMIN";}
+
 }

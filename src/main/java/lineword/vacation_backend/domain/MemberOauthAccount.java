@@ -3,6 +3,7 @@ package lineword.vacation_backend.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "MemberOauthAccount")
@@ -16,10 +17,10 @@ public class MemberOauthAccount {
     private String provider;
 
     @Column(name = "created_at", nullable = false)
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDate deletedAt;
+    private LocalDateTime deletedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
