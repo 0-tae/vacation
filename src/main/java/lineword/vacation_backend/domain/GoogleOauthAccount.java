@@ -3,6 +3,7 @@ package lineword.vacation_backend.domain;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "GoogleOauthAccount")
@@ -22,10 +23,10 @@ public class GoogleOauthAccount {
     private String refreshToken;
 
     @Column(name = "created_at", nullable = false)
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDate deletedAt;
+    private LocalDateTime deletedAt;
 
     @OneToOne
     @JoinColumn(name = "oauth_account_id", nullable = false)
