@@ -1,17 +1,22 @@
 package lineword.vacation_backend.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
-@Table(name = "Role")
-public class UserOauthAccount {
+@Table(name = "Event")
+@Getter
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "event_id")
+    private Integer eventId;
 
-    @Column(length = 16)
-    private String name;
+    @Column(name = "event_type", nullable = false, length = 16)
+    private String eventType;
 
-    // Getters and Setters
+    @Column(name = "entity_type", length = 16)
+    private String entityType;
 }
+

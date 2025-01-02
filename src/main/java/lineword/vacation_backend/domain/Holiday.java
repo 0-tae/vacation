@@ -5,6 +5,7 @@ import lineword.vacation_backend.exception.NoRemainedHolidayException;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Holiday")
@@ -22,10 +23,10 @@ public class Holiday {
     private Integer usedLeave = 0;
 
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDate deletedAt;
+    private LocalDateTime deletedAt;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

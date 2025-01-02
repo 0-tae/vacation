@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -52,10 +54,10 @@ public class HolidayRequest {
     private String note;
 
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDate deletedAt;
+    private LocalDateTime deletedAt;
 
     @Column(name = "status")
     private String status;
@@ -71,5 +73,15 @@ public class HolidayRequest {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Member member;
+
+    public List<Member> getApprovers() {
+        return List.of(approver.getFirstApprover(),
+                approver.getSecondApprover());
+    }
+
+    public HolidayRequestApproval toApprovalEntity(){
+        return HolidayRequestApproval.builder()
+                .holidayRequest(this).build();
+    }
 }
 
