@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotificationNotFoundException extends RuntimeException{
     String message;
-    HolidayHttpStatus status = HolidayHttpStatus.BAD_REQUEST;
+    HolidayHttpStatus status = HolidayHttpStatus.NOT_FOUND;
 
     public NotificationNotFoundException(int memberId){
         this.message = String.format("알림 찾을 수 없습니다. Member Id: %d",memberId);

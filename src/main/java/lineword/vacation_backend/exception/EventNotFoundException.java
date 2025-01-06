@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EventNotFoundException extends RuntimeException{
     String message;
-    HolidayHttpStatus status = HolidayHttpStatus.BAD_REQUEST;
+    HolidayHttpStatus status = HolidayHttpStatus.NOT_FOUND;
 
     public EventNotFoundException(String event){
         this.message = String.format("이벤트를 찾을 수 없습니다. 입력된 이벤트: %s",event);

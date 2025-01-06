@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Notice")
+@Table(name = "Notification")
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApprovalNotification {
+public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +33,6 @@ public class ApprovalNotification {
     private LocalDateTime deletedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "related_request", nullable = false)
-    private HolidayRequest relatedRequest;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", nullable = false)
     private Event event;
 
@@ -48,4 +44,3 @@ public class ApprovalNotification {
     @JoinColumn(name = "receiver_id", nullable = false)
     private Member receiver;
 }
-

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HolidayNotFoundByMemberException extends RuntimeException{
     String message;
-    HolidayHttpStatus status = HolidayHttpStatus.BAD_REQUEST;
+    HolidayHttpStatus status = HolidayHttpStatus.NOT_FOUND;
 
     public HolidayNotFoundByMemberException(Member member){
         this.message = String.format("휴가를 찾을 수 없습니다. 멤버: %s",member);

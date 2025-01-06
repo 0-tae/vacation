@@ -2,7 +2,7 @@ package lineword.vacation_backend.service;
 
 import lineword.vacation_backend.domain.Event;
 import lineword.vacation_backend.domain.HolidayRequest;
-import lineword.vacation_backend.domain.ApprovalNotification;
+import lineword.vacation_backend.domain.Notification;
 import lineword.vacation_backend.enums.NotificationTemplates;
 import lineword.vacation_backend.exception.EventNotFoundException;
 import lineword.vacation_backend.model.ApprovalEventCheckRequestDto;
@@ -24,10 +24,10 @@ public class EventService {
         Event event = findByEventType(eventType);
         String message = NotificationTemplates.HOLIDAY_APPROVAL.getTemplate(request);
 
-        List<ApprovalNotification> createdApprovalNotification = request.getApprovers().stream()
+        List<Notification> createdNotification = request.getApprovers().stream()
                 .map(receiver -> approvalNotificationService.createNotice(event, message, receiver, request)).toList();
 
-        approvalNotificationService.saveNotificationAll(createdApprovalNotification);
+        approvalNotificationService.saveNotificationAll(createdNotification);
     }
 
     public List<ApprovalEventCheckResponseDto> checkApprovalNotification(ApprovalEventCheckRequestDto requestDto) {

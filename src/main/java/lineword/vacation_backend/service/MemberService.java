@@ -1,11 +1,8 @@
 package lineword.vacation_backend.service;
 
 
-import lineword.vacation_backend.domain.Approver;
 import lineword.vacation_backend.domain.Member;
 import lineword.vacation_backend.exception.MemberNotFoundByEmailException;
-import lineword.vacation_backend.exception.NoApproverForMemberException;
-import lineword.vacation_backend.repository.ApproverRepository;
 import lineword.vacation_backend.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

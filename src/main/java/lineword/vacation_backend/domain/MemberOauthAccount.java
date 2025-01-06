@@ -1,20 +1,18 @@
 package lineword.vacation_backend.domain;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "MemberOauthAccount")
+@Table(name = "UserOauthAccount")
 public class MemberOauthAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, length = 16)
-    private String provider;
+    @Column(name = "type", nullable = false, length = 16)
+    private String type;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -27,4 +25,3 @@ public class MemberOauthAccount {
     private Member member;
     // Getters and Setters
 }
-

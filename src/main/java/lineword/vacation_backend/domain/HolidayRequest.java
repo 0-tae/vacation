@@ -1,6 +1,7 @@
 package lineword.vacation_backend.domain;
 
 import jakarta.persistence.*;
+import lineword.vacation_backend.enums.HolidayRequestStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,10 +25,10 @@ public class HolidayRequest {
     private Integer id;
 
     @Column(name = "previous_remained_leave", nullable = false)
-    private Integer previousRemainedLeave = 0;
+    private Integer previousRemainedLeave;
 
     @Column(name = "after_remained_leave", nullable = false)
-    private Integer afterRemainedLeave = 0;
+    private Integer afterRemainedLeave;
 
     @Column(nullable = false, length = 16)
     private String type;
@@ -67,21 +68,24 @@ public class HolidayRequest {
     private Approver approver;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "receiver_id", nullable = false)
     private Member receiver;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Member member;
 
+    public void setStatusAccepted() {
+        this.status = HolidayRequestStatus.ACCEPTED.getStatus();
+    }
+
     public List<Member> getApprovers() {
         return List.of(approver.getFirstApprover(),
                 approver.getSecondApprover());
     }
 
-    public HolidayRequestApproval toApprovalEntity(){
+    public HolidayRequestApproval toApprovalEntity() {
         return HolidayRequestApproval.builder()
                 .holidayRequest(this).build();
     }
 }
-

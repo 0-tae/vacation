@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemberNotFoundByEmailException extends RuntimeException{
     String message;
-    HolidayHttpStatus status = HolidayHttpStatus.BAD_REQUEST;
+    HolidayHttpStatus status = HolidayHttpStatus.NOT_FOUND;
 
     public MemberNotFoundByEmailException(String email){
         this.message = String.format("유저를 찾을 수 없습니다. 이메일: %s",email);

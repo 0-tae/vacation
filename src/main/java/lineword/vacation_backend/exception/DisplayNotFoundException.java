@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class MemberNotFoundByException extends RuntimeException{
+public class DisplayNotFoundException extends RuntimeException{
     String message;
     HolidayHttpStatus status = HolidayHttpStatus.NOT_FOUND;
 
-    public MemberNotFoundByException(int id){
-        this.message = String.format("유저를 찾을 수 없습니다. 아이디: %d",id);
+    public DisplayNotFoundException(Integer id){
+        this.message = String.format("디스플레이를 찾을 수 없습니다. ID: %d",id);
     }
 }

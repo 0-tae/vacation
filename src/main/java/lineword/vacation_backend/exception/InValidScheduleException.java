@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 public class InValidScheduleException extends RuntimeException{
     String message;
     HolidayHttpStatus status = HolidayHttpStatus.BAD_REQUEST;
